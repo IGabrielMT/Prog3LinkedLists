@@ -5,14 +5,14 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
-public class SimpleList implements List {
-    Node header;
-    Node tail;
+public class SimpleList<T> implements List<T> {
+    Node<T> header;
+    Node<T> tail;
 
     @Override
     public int size() {
         int i = 0;
-        Node aux = header;
+        Node<T> aux = header;
         while(aux != null){
             i++;
             aux = aux.getNext();
@@ -31,14 +31,14 @@ public class SimpleList implements List {
     }
 
     @Override
-    public Iterator iterator() {
+    public Iterator<T> iterator() {
         return null;
     }
 
     @Override
     public Object[] toArray() {
         Object[] array = new Object[size()];
-        Node aux = header;
+        Node<T> aux = header;
         int i = 0;
         while(aux != null){
             array[i++] = aux.getInfo();
@@ -48,8 +48,8 @@ public class SimpleList implements List {
     }
 
     @Override
-    public boolean add(Object o) {
-        Node newNode = new Node();
+    public boolean add(T o) {
+        Node<T> newNode = new Node<>();
         newNode.setInfo(o);
         if (header == null) {
             header = newNode;
@@ -57,7 +57,7 @@ public class SimpleList implements List {
             tail.setNext(newNode);
         }
         tail = newNode;
-        return false;
+        return true;
     }
 
     @Override
@@ -66,12 +66,12 @@ public class SimpleList implements List {
     }
 
     @Override
-    public boolean addAll(Collection c) {
+    public boolean addAll(Collection<? extends T> c) {
         return false;
     }
 
     @Override
-    public boolean addAll(int index, Collection c) {
+    public boolean addAll(int index, Collection<? extends T> c) {
         return false;
     }
 
@@ -81,22 +81,22 @@ public class SimpleList implements List {
     }
 
     @Override
-    public Object get(int index) {
+    public T get(int index) {
         return null;
     }
 
     @Override
-    public Object set(int index, Object element) {
+    public T set(int index, T element) {
         return null;
     }
 
     @Override
-    public void add(int index, Object element) {
+    public void add(int index, T element) {
 
     }
 
     @Override
-    public Object remove(int index) {
+    public T remove(int index) {
         return null;
     }
 
@@ -111,43 +111,43 @@ public class SimpleList implements List {
     }
 
     @Override
-    public ListIterator listIterator() {
+    public ListIterator<T> listIterator() {
         return null;
     }
 
     @Override
-    public ListIterator listIterator(int index) {
+    public ListIterator<T> listIterator(int index) {
         return null;
     }
 
     @Override
-    public List subList(int fromIndex, int toIndex) {
+    public List<T> subList(int fromIndex, int toIndex) {
         return List.of();
     }
 
     @Override
-    public boolean retainAll(Collection c) {
+    public boolean retainAll(Collection<?> c) {
         return false;
     }
 
     @Override
-    public boolean removeAll(Collection c) {
+    public boolean removeAll(Collection<?> c) {
         return false;
     }
 
     @Override
-    public boolean containsAll(Collection c) {
+    public boolean containsAll(Collection<?> c) {
         return false;
     }
 
     @Override
-    public Object[] toArray(Object[] a) {
-        return new Object[0];
+    public <T1> T1[] toArray(T1[] a) {
+        return null;
     }
 
     public int sum(){
         int sum = 0;
-        Node aux = header;
+        Node<T> aux = header;
         while(aux != null){
             sum += (int) aux.getInfo();
             aux = aux.getNext();

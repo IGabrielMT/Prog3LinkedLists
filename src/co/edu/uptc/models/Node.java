@@ -1,23 +1,22 @@
 package co.edu.uptc.models;
 
-public class Node {
-    private Object info;
-    private Node next;
+public class Node<T> {
+    private T info;
+    private Node<T> next;
 
-    public Object getInfo() {
+    public T getInfo() {
         return info;
     }
 
-    public Node getNext() {
+    public Node<T> getNext() {
         return next;
     }
 
-    public void setInfo(Object info) {
+    public void setInfo(T info) {
         this.info = info;
     }
 
-    public void setNext(Node next) {
+    public void setNext(Node<T> next) {
         this.next = next;
     }
-
 }
