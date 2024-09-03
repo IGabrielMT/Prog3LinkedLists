@@ -6,7 +6,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Car {
-    private String marca;
-    private String modelo;
+    private String brand;
+    private int model;
     private String color;
 }
