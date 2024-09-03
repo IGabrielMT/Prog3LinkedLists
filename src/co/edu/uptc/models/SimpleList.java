@@ -146,15 +146,6 @@ public class SimpleList<T> implements List<T> {
         return null;
     }
 
-    public int sum(){
-        int sum = 0;
-        Node<T> aux = header;
-        while(aux != null){
-            sum += (int) aux.getInfo();
-            aux = aux.getNext();
-        }
-        return sum;
-    }
     private class SimpleListIterator implements Iterator<T> {
         private Node<T> current = header;
 
@@ -172,5 +163,24 @@ public class SimpleList<T> implements List<T> {
             current = current.getNext();
             return data;
         }
+    }
+    public void sort(Comparator<? super T> comparator) {
+        if (header == null || header.getNext() == null) {
+            return;
+        }
+        boolean swapped;
+        do {
+            swapped = false;
+            Node<T> current = header;
+            while (current.getNext() != null) {
+                if (comparator.compare(current.getInfo(), current.getNext().getInfo()) > 0) {
+                    T temp = current.getInfo();
+                    current.setInfo(current.getNext().getInfo());
+                    current.getNext().setInfo(temp);
+                    swapped = true;
+                }
+                current = current.getNext();
+            }
+        } while (swapped);
     }
 }
