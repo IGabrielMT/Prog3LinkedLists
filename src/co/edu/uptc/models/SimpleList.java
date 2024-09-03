@@ -1,9 +1,6 @@
 package co.edu.uptc.models;
 
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
+import java.util.*;
 
 public class SimpleList<T> implements List<T> {
     Node<T> header;
@@ -32,7 +29,7 @@ public class SimpleList<T> implements List<T> {
 
     @Override
     public Iterator<T> iterator() {
-        return null;
+        return new SimpleListIterator();
     }
 
     @Override
@@ -82,7 +79,11 @@ public class SimpleList<T> implements List<T> {
 
     @Override
     public T get(int index) {
-        return null;
+        Node<T> aux = header;
+        for (int i = 0; i < index; i++) {
+            aux = aux.getNext();
+        }
+        return aux.getInfo();
     }
 
     @Override
@@ -153,5 +154,23 @@ public class SimpleList<T> implements List<T> {
             aux = aux.getNext();
         }
         return sum;
+    }
+    private class SimpleListIterator implements Iterator<T> {
+        private Node<T> current = header;
+
+        @Override
+        public boolean hasNext() {
+            return current != null;
+        }
+
+        @Override
+        public T next() {
+            if (!hasNext()) {
+                throw new NoSuchElementException();
+            }
+            T data = current.getInfo();
+            current = current.getNext();
+            return data;
+        }
     }
 }
